@@ -8,7 +8,6 @@
 import UIKit
 import CoreData
 //test
-уууупс, не то
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
