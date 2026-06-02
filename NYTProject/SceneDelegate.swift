@@ -6,7 +6,7 @@
 //
 
 import UIKit
-// developpp
+// develop
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
