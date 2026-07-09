@@ -33,6 +33,11 @@ class NewsCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let heightConstraint = imageView.heightAnchor.constraint(equalToConstant: 180)
+            heightConstraint.priority = .defaultHigh
+            heightConstraint.isActive = true
+                
         return imageView
     }()
     
@@ -43,13 +48,6 @@ class NewsCell: UICollectionViewCell {
         timeLabel.textAlignment = .right
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         return timeLabel
-    }()
-    
-    private let separatorView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemGray5
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
     }()
     
     override init(frame: CGRect) {
@@ -69,7 +67,6 @@ class NewsCell: UICollectionViewCell {
         timeLabel.text = nil
         imageView.image = nil
         
-        separatorView.alpha = 1
         imageView.isHidden = false
     }
     
@@ -79,7 +76,6 @@ class NewsCell: UICollectionViewCell {
             subtitleLabel,
             imageView,
             timeLabel,
-            separatorView
         ])
         stack.axis = .vertical
         stack.spacing = 8
@@ -100,11 +96,25 @@ class NewsCell: UICollectionViewCell {
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-            stackView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 32),
+//            stackView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 32),
             
             imageView.heightAnchor.constraint(equalToConstant: 180),
-            separatorView.heightAnchor.constraint(equalToConstant: 1)
         ])
+    }
+    
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        let attributes = super.preferredLayoutAttributesFitting(layoutAttributes)
+        
+        let targetSize = CGSize(width: layoutAttributes.frame.width, height: UIView.layoutFittingCompressedSize.height)
+        
+        let size = contentView.systemLayoutSizeFitting(
+            targetSize,
+            withHorizontalFittingPriority: .required,
+            verticalFittingPriority: .fittingSizeLevel
+        )
+        
+        attributes.frame.size.height = ceil(size.height)
+        return attributes
     }
     
     func formatNYTDate(_ dateString: String) -> String {
@@ -128,10 +138,8 @@ class NewsCell: UICollectionViewCell {
     func configure(with item: NewsItem) {
         titleLabel.text = item.title
         subtitleLabel.text = item.abstract
-        timeLabel.text = formatNYTDate(item.publishedDate)
-        
-        separatorView.alpha = 1
-        
+        timeLabel.text = formatNYTDate(item.publishedDate ?? "")
+                
         if let imageUrlString = item.multimedia?.first?.url,
            let url = URL(string: imageUrlString) {
             
@@ -149,5 +157,34 @@ class NewsCell: UICollectionViewCell {
             imageView.isHidden = true
         }
     }
+    
+    func configure(with searchItem: DocItem) {
+        titleLabel.text = searchItem.headline?.main ?? "No title available"
+        subtitleLabel.text = searchItem.abstract ?? "No description available"
+        
+        if let author = searchItem.byline?.original {
+            timeLabel.text = author
+        } else {
+            timeLabel.text = nil
+        }
+                
+        if let imageUrlString = searchItem.multimedia?.defaultImage?.url,
+           let url = URL(string: imageUrlString) {
+            
+            imageView.isHidden = false
+            imageView.image = nil
+            
+            URLSession.shared.dataTask(with: url) { [weak self] data, _, _ in
+                if let data = data, let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.imageView.image = image
+                    }
+                }
+            }.resume()
+            
+        } else {
+            imageView.image = nil
+            imageView.isHidden = true
+        }
+    }
 }
-

@@ -5,8 +5,8 @@
 //  Created by Наталия Желанова on 02.06.2026.
 //
 //
-
 import UIKit
+import SafariServices
 
 class MainViewController: UIViewController {
     
@@ -16,7 +16,8 @@ class MainViewController: UIViewController {
     private var newsItems: [NewsItem] = []
     private var popularItems: [PopularItems] = []
     private let refreshControl = UIRefreshControl()
-    
+    private let apiKey = "GSJqsppxPEQS5Ae65Ie8r5c4WSQVjzxb4JVCh5pgwuAbWGmb"
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -34,7 +35,8 @@ class MainViewController: UIViewController {
         collectionView.backgroundColor = .systemGroupedBackground
         
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.estimatedItemSize = CGSize(width: view.frame.width, height: 100)
+//        layout.estimatedItemSize = CGSize(width: view.frame.width, height: 100)
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         layout.minimumLineSpacing = 16
         
         view.addSubview(headerView)
@@ -73,7 +75,7 @@ class MainViewController: UIViewController {
         urlComponents.host = "api.nytimes.com"
         urlComponents.path = "/svc/topstories/v2/home.json"
         urlComponents.queryItems = [
-            .init(name: "api-key", value: "GSJqsppxPEQS5Ae65Ie8r5c4WSQVjzxb4JVCh5pgwuAbWGmb"),
+            .init(name: "api-key", value: apiKey),
         ]
         
         guard let url = urlComponents.url else { return }
@@ -91,14 +93,14 @@ class MainViewController: UIViewController {
             do {
                 let decodedData = try JSONDecoder().decode(NYTResponse.self, from: data)
                 
-                if let firstArticle = decodedData.results.first {
-                    print("Заголовок: \(firstArticle.title)")
-                    print("Описание: \(firstArticle.abstract)")
+                /*if let firstArticle = decodedData.results?.first {
+                    print("Заголовок: \(firstArticle.title ?? "без заголовка")")
+                    print("Описание: \(firstArticle.abstract ?? "без описания")")
                     print("Картинка: \(firstArticle.multimedia?.first?.url ?? "нет фото")")
-                }
+                }*/
                 
                 DispatchQueue.main.async {
-                    self?.newsItems = decodedData.results
+                    self?.newsItems = decodedData.results ?? []
                     self?.collectionView.reloadData()
                     self?.refreshControl.endRefreshing()
                 }
@@ -130,17 +132,17 @@ class MainViewController: UIViewController {
             do {
                 let decodedData = try JSONDecoder().decode(NYTPopularResponse.self, from: data)
                 
-                if let firstPopularArticle = decodedData.results.first {
-                    print("Заголовок: \(firstPopularArticle.title)")
+                if let firstPopularArticle = decodedData.results?.first {
+                    print("Заголовок: \(firstPopularArticle.title ?? "без заголовка")")
                     
                     let firstMedia = firstPopularArticle.media?.first
-                    let firstMetadata = firstMedia?.mediaMetadata.first
+                    let firstMetadata = firstMedia?.mediaMetadata?.first
                     
                     print("Картинка: \(firstMetadata?.url ?? "нет фото")")
                 }
                 
                 DispatchQueue.main.async {
-                    self?.popularItems = decodedData.results
+                    self?.popularItems = decodedData.results ?? []
                     self?.collectionView.reloadData()
                     self?.refreshControl.endRefreshing()
                 }
@@ -181,6 +183,15 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             ) as! HorizontalNewsSectionCell
             
             cell.configure(with: popularItems)
+            
+            cell.onArticleTap = { [weak self] urlString in
+                guard let url = URL(string: urlString) else { return }
+                
+                let safariVC = SFSafariViewController(url: url)
+                safariVC.preferredControlTintColor = .systemBlue
+                self?.present(safariVC, animated: true, completion: nil)
+            }
+            
             return cell
             
         } else {
@@ -206,5 +217,27 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         } else {
             return CGSize(width: width, height: 120)
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let urlString: String?
+        
+        if indexPath.item < 4 {
+            urlString = newsItems[indexPath.item].url
+        } else if indexPath.item == 4 {
+            return
+        } else {
+            urlString = newsItems[indexPath.item - 1].url
+        }
+        
+        guard let urlString = urlString,
+              let url = URL(string: urlString) else {
+            print("Не удалось получить ссылку на статью")
+            return
+        }
+        
+        let safariVC = SFSafariViewController(url: url)
+        safariVC.preferredControlTintColor = .systemBlue
+        present(safariVC, animated: true, completion: nil)
     }
 }

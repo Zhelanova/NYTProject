@@ -63,8 +63,9 @@ class CompactNewsCell: UICollectionViewCell {
     
     func configure(with article: PopularItems) {
         titleLabel.text = article.title
+        newsImageView.image = nil
         
-        if let imageUrlString = article.media?.first?.mediaMetadata.first?.url,
+        if let imageUrlString = article.media?.first?.mediaMetadata?.first?.url,
            let url = URL(string: imageUrlString) {
             
             URLSession.shared.dataTask(with: url) { [weak self] data, _, _ in

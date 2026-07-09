@@ -7,15 +7,6 @@
 import UIKit
 
 class NewsHeaderView: UIView {
-    private let stackView = UIStackView()
-    
-    private let searchButton: UIButton = {
-        let button = UIButton(type: .system)
-        let image = UIImage(systemName: "magnifyingglass")
-        button.setImage(image, for: .normal)
-        button.tintColor = .black
-        return button
-    }()
     
     private let logoImageView: UIImageView = {
         let iv = UIImageView()
@@ -48,28 +39,25 @@ class NewsHeaderView: UIView {
     }
     
     private func setupView() {
-        addSubview(stackView)
+        addSubview(logoImageView)
+        addSubview(modeButton)
         addSubview(addBottomSeparator)
         
         modeButton.addTarget(self, action: #selector(toggleTheme), for: .touchUpInside)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        modeButton.translatesAutoresizingMaskIntoConstraints = false
         addBottomSeparator.translatesAutoresizingMaskIntoConstraints = false
         
-        stackView.axis = .horizontal
-        stackView.distribution = .equalSpacing
-        stackView.alignment = .center
-        
-        stackView.addArrangedSubview(searchButton)
-        stackView.addArrangedSubview(logoImageView)
-        stackView.addArrangedSubview(modeButton)
-        
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            searchButton.widthAnchor.constraint(equalToConstant: 40),
+            logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            logoImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            logoImageView.topAnchor.constraint(greaterThanOrEqualTo: topAnchor, constant: 8),
+            logoImageView.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor, constant: -8),
+                       
+            modeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            modeButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+            modeButton.widthAnchor.constraint(equalToConstant: 40),
+            modeButton.heightAnchor.constraint(equalToConstant: 40),
             modeButton.widthAnchor.constraint(equalToConstant: 40),
             
             addBottomSeparator.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -93,7 +81,7 @@ extension NewsHeaderView {
         let isDark = traitCollection.userInterfaceStyle == .dark
         
         backgroundColor = isDark ? .black : .white
-        searchButton.tintColor = isDark ? .white : .black
+//        searchButton.tintColor = isDark ? .white : .black
         modeButton.tintColor = isDark ? .white : .black
         logoImageView.tintColor = isDark ? .white : .black
         

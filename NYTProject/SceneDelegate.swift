@@ -19,10 +19,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let rootVC = MainViewController()
         let navVC = UINavigationController(rootViewController: rootVC)
+        navVC.tabBarItem = UITabBarItem(
+            title: "",
+            image: UIImage(systemName: "rectangle.grid.1x2"),
+            selectedImage: UIImage(systemName: "rectangle.grid.1x2")
+        )
+        navVC.tabBarItem.tag = 0
         
+        let searchVC = SearchViewController()
+        let navSVC = UINavigationController(rootViewController: searchVC)
+        navSVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+
         navVC.isNavigationBarHidden = true
+        navSVC.isNavigationBarHidden = true
         
-        window.rootViewController = navVC
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [navVC, navSVC]
+        tabBarController.tabBar.tintColor = .black
+        
+        window.rootViewController = tabBarController
         self.window = window
     
         window.makeKeyAndVisible()

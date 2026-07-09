@@ -10,6 +10,8 @@ class HorizontalNewsSectionCell: UICollectionViewCell, UICollectionViewDataSourc
     static let identifier = "HorizontalNewsSectionCell"
     private var popularArticles: [PopularItems] = []
     
+    var onArticleTap: ((String) -> Void)?
+    
     private lazy var horizontalCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -35,9 +37,8 @@ class HorizontalNewsSectionCell: UICollectionViewCell, UICollectionViewDataSourc
         contentView.backgroundColor = .clear
         
         if let layout = horizontalCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-              //layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
               layout.minimumLineSpacing = 12
-              layout.minimumInteritemSpacing = 8 
+              layout.minimumInteritemSpacing = 8
           }
         
         NSLayoutConstraint.activate([
@@ -63,9 +64,14 @@ class HorizontalNewsSectionCell: UICollectionViewCell, UICollectionViewDataSourc
         ) as! CompactNewsCell
         
         let article = popularArticles[indexPath.item]
-        
         cell.configure(with: article)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let urlString = popularArticles[indexPath.item].url {
+            onArticleTap?(urlString)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -74,7 +80,6 @@ class HorizontalNewsSectionCell: UICollectionViewCell, UICollectionViewDataSourc
         return CGSize(width: 280, height: cellHeight)
     }
 
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
     }
