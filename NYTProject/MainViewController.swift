@@ -35,8 +35,7 @@ class MainViewController: UIViewController {
         collectionView.backgroundColor = .systemGroupedBackground
         
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-//        layout.estimatedItemSize = CGSize(width: view.frame.width, height: 100)
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        layout.estimatedItemSize = CGSize(width: UIScreen.main.bounds.width, height: 300)
         layout.minimumLineSpacing = 16
         
         view.addSubview(headerView)
@@ -207,16 +206,6 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             return cell
         }
         
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.frame.width
-        
-        if indexPath.item == 4 {
-            return CGSize(width: width, height: 220)
-        } else {
-            return CGSize(width: width, height: 120)
-        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

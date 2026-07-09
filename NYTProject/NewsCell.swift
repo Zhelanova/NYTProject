@@ -8,6 +8,7 @@
 import UIKit
 
 class NewsCell: UICollectionViewCell {
+    private var imageTask: URLSessionDataTask?
     
     //MARK - UI Elemets
     private let titleLabel: UILabel = {
@@ -33,11 +34,6 @@ class NewsCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let heightConstraint = imageView.heightAnchor.constraint(equalToConstant: 180)
-            heightConstraint.priority = .defaultHigh
-            heightConstraint.isActive = true
-                
         return imageView
     }()
     
@@ -66,7 +62,6 @@ class NewsCell: UICollectionViewCell {
         subtitleLabel.text = nil
         timeLabel.text = nil
         imageView.image = nil
-        
         imageView.isHidden = false
     }
     
@@ -96,25 +91,12 @@ class NewsCell: UICollectionViewCell {
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-//            stackView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 32),
-            
-            imageView.heightAnchor.constraint(equalToConstant: 180),
+            imageView.heightAnchor.constraint(equalToConstant: 220)
         ])
-    }
-    
-    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        let attributes = super.preferredLayoutAttributesFitting(layoutAttributes)
         
-        let targetSize = CGSize(width: layoutAttributes.frame.width, height: UIView.layoutFittingCompressedSize.height)
-        
-        let size = contentView.systemLayoutSizeFitting(
-            targetSize,
-            withHorizontalFittingPriority: .required,
-            verticalFittingPriority: .fittingSizeLevel
-        )
-        
-        attributes.frame.size.height = ceil(size.height)
-        return attributes
+        let widthConstraint = contentView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width)
+        widthConstraint.priority = .required
+        widthConstraint.isActive = true
     }
     
     func formatNYTDate(_ dateString: String) -> String {
@@ -136,6 +118,8 @@ class NewsCell: UICollectionViewCell {
     }
     
     func configure(with item: NewsItem) {
+        imageTask?.cancel()
+        
         titleLabel.text = item.title
         subtitleLabel.text = item.abstract
         timeLabel.text = formatNYTDate(item.publishedDate ?? "")
@@ -144,14 +128,14 @@ class NewsCell: UICollectionViewCell {
            let url = URL(string: imageUrlString) {
             
             imageView.isHidden = false
-            
-            URLSession.shared.dataTask(with: url) { [weak self] data, _, _ in
+            imageTask = URLSession.shared.dataTask(with: url) { [weak self] data, _, _ in
                 if let data = data, let image = UIImage(data: data) {
                     DispatchQueue.main.async {
                         self?.imageView.image = image
                     }
                 }
-            }.resume()
+            }
+            imageTask?.resume()
         } else {
             imageView.image = nil
             imageView.isHidden = true

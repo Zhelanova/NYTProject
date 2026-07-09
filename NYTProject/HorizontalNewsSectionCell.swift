@@ -48,6 +48,14 @@ class HorizontalNewsSectionCell: UICollectionViewCell, UICollectionViewDataSourc
             horizontalCollectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
         
+        let heightConstraint = contentView.heightAnchor.constraint(equalToConstant: 220)
+        heightConstraint.priority = .required
+        heightConstraint.isActive = true
+        
+        let widthConstraint = contentView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width)
+        widthConstraint.priority = .required
+        widthConstraint.isActive = true
+        
         horizontalCollectionView.dataSource = self
         horizontalCollectionView.delegate = self
         horizontalCollectionView.register(CompactNewsCell.self, forCellWithReuseIdentifier: CompactNewsCell.identifier)
