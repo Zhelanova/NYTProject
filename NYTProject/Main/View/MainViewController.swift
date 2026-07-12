@@ -8,8 +8,8 @@
 import UIKit
 import SafariServices
 
-class MainViewController: UIViewController {
-    var presenter: MainPresenter?
+class MainViewController: UIViewController, MainViewInput {
+    var presenter: MainViewOutput?
     
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private let cellIdentifier = "NewsCell"

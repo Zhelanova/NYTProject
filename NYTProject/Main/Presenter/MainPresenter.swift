@@ -12,8 +12,8 @@ enum MainItem {
     case popularsItem([PopularItems])
 }
 
-final class MainPresenter {
-    weak var view: MainViewController?
+final class MainPresenter: MainViewOutput {
+    weak var view: MainViewInput?
     
     private(set) var items: [MainItem] = []
     
@@ -90,7 +90,7 @@ final class MainPresenter {
         urlComponents.host = "api.nytimes.com"
         urlComponents.path = "/svc/mostpopular/v2/emailed/7.json"
         urlComponents.queryItems = [
-            .init(name: "api-key", value: "GSJqsppxPEQS5Ae65Ie8r5c4WSQVjzxb4JVCh5pgwuAbWGmb"),
+            .init(name: "api-key", value: apiKey),
         ]
         
         guard let url = urlComponents.url else { return }

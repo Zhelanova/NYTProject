@@ -16,14 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
-
-        let mainViewController = MainViewController()
-        let mainPresenter = MainPresenter()
-        
-        mainViewController.presenter = mainPresenter
-        mainPresenter.view = mainViewController
-        
-        let navVC = UINavigationController(rootViewController: mainViewController)
+        let navVC = UINavigationController(rootViewController: MainAssembler().build())
         navVC.tabBarItem = UITabBarItem(
             title: "",
             image: UIImage(systemName: "rectangle.grid.1x2"),

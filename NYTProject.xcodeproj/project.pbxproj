@@ -7,14 +7,7 @@
 	objects = {
 
 /* Begin PBXContainerItemProxy section */
-		0007FF1B2FCE48EF0019D1EE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0007FEF92FCE48EE0019D1EE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0007FF002FCE48EE0019D1EE;
-			remoteInfo = NYTProject;
-		};
-		0007FF252FCE48EF0019D1EE /* PBXContainerItemProxy */ = {
+		00DF0F6630040B5200B511BA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0007FEF92FCE48EE0019D1EE /* Project object */;
 			proxyType = 1;
@@ -25,8 +18,8 @@
 
 /* Begin PBXFileReference section */
 		0007FF012FCE48EE0019D1EE /* NYTProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYTProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0007FF1A2FCE48EF0019D1EE /* NYTProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NYTProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0007FF242FCE48EF0019D1EE /* NYTProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NYTProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		001A055D30040D36001CA565 /* NYTProject.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = NYTProject.xctestplan; path = ../NYTProject.xctestplan; sourceTree = "<group>"; };
+		00DF0F6230040B5200B511BA /* NYTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NYTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -48,19 +41,14 @@
 			path = NYTProject;
 			sourceTree = "<group>";
 		};
-		0007FF1D2FCE48EF0019D1EE /* NYTProjectTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = NYTProjectTests;
-			sourceTree = "<group>";
-		};
-		0007FF272FCE48EF0019D1EE /* NYTProjectUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = NYTProjectUITests;
-			sourceTree = "<group>";
-		};
 		001817A02FE08B3E002D3640 /* Font */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Font;
+			sourceTree = "<group>";
+		};
+		00DF0F6330040B5200B511BA /* NYTTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = NYTTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -73,14 +61,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0007FF172FCE48EF0019D1EE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0007FF212FCE48EF0019D1EE /* Frameworks */ = {
+		00DF0F5F30040B5200B511BA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -93,10 +74,10 @@
 		0007FEF82FCE48EE0019D1EE = {
 			isa = PBXGroup;
 			children = (
+				001A055D30040D36001CA565 /* NYTProject.xctestplan */,
 				001817A02FE08B3E002D3640 /* Font */,
 				0007FF032FCE48EE0019D1EE /* NYTProject */,
-				0007FF1D2FCE48EF0019D1EE /* NYTProjectTests */,
-				0007FF272FCE48EF0019D1EE /* NYTProjectUITests */,
+				00DF0F6330040B5200B511BA /* NYTTests */,
 				0007FF022FCE48EE0019D1EE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -105,8 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				0007FF012FCE48EE0019D1EE /* NYTProject.app */,
-				0007FF1A2FCE48EF0019D1EE /* NYTProjectTests.xctest */,
-				0007FF242FCE48EF0019D1EE /* NYTProjectUITests.xctest */,
+				00DF0F6230040B5200B511BA /* NYTTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -137,51 +117,28 @@
 			productReference = 0007FF012FCE48EE0019D1EE /* NYTProject.app */;
 			productType = "com.apple.product-type.application";
 		};
-		0007FF192FCE48EF0019D1EE /* NYTProjectTests */ = {
+		00DF0F6130040B5200B511BA /* NYTTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0007FF322FCE48F00019D1EE /* Build configuration list for PBXNativeTarget "NYTProjectTests" */;
+			buildConfigurationList = 00DF0F6830040B5200B511BA /* Build configuration list for PBXNativeTarget "NYTTests" */;
 			buildPhases = (
-				0007FF162FCE48EF0019D1EE /* Sources */,
-				0007FF172FCE48EF0019D1EE /* Frameworks */,
-				0007FF182FCE48EF0019D1EE /* Resources */,
+				00DF0F5E30040B5200B511BA /* Sources */,
+				00DF0F5F30040B5200B511BA /* Frameworks */,
+				00DF0F6030040B5200B511BA /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				0007FF1C2FCE48EF0019D1EE /* PBXTargetDependency */,
+				00DF0F6730040B5200B511BA /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				0007FF1D2FCE48EF0019D1EE /* NYTProjectTests */,
+				00DF0F6330040B5200B511BA /* NYTTests */,
 			);
-			name = NYTProjectTests;
+			name = NYTTests;
 			packageProductDependencies = (
 			);
-			productName = NYTProjectTests;
-			productReference = 0007FF1A2FCE48EF0019D1EE /* NYTProjectTests.xctest */;
+			productName = NYTTests;
+			productReference = 00DF0F6230040B5200B511BA /* NYTTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		0007FF232FCE48EF0019D1EE /* NYTProjectUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0007FF352FCE48F00019D1EE /* Build configuration list for PBXNativeTarget "NYTProjectUITests" */;
-			buildPhases = (
-				0007FF202FCE48EF0019D1EE /* Sources */,
-				0007FF212FCE48EF0019D1EE /* Frameworks */,
-				0007FF222FCE48EF0019D1EE /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0007FF262FCE48EF0019D1EE /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				0007FF272FCE48EF0019D1EE /* NYTProjectUITests */,
-			);
-			name = NYTProjectUITests;
-			packageProductDependencies = (
-			);
-			productName = NYTProjectUITests;
-			productReference = 0007FF242FCE48EF0019D1EE /* NYTProjectUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -196,11 +153,7 @@
 					0007FF002FCE48EE0019D1EE = {
 						CreatedOnToolsVersion = 26.2;
 					};
-					0007FF192FCE48EF0019D1EE = {
-						CreatedOnToolsVersion = 26.2;
-						TestTargetID = 0007FF002FCE48EE0019D1EE;
-					};
-					0007FF232FCE48EF0019D1EE = {
+					00DF0F6130040B5200B511BA = {
 						CreatedOnToolsVersion = 26.2;
 						TestTargetID = 0007FF002FCE48EE0019D1EE;
 					};
@@ -221,8 +174,7 @@
 			projectRoot = "";
 			targets = (
 				0007FF002FCE48EE0019D1EE /* NYTProject */,
-				0007FF192FCE48EF0019D1EE /* NYTProjectTests */,
-				0007FF232FCE48EF0019D1EE /* NYTProjectUITests */,
+				00DF0F6130040B5200B511BA /* NYTTests */,
 			);
 		};
 /* End PBXProject section */
@@ -235,14 +187,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0007FF182FCE48EF0019D1EE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0007FF222FCE48EF0019D1EE /* Resources */ = {
+		00DF0F6030040B5200B511BA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -259,14 +204,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0007FF162FCE48EF0019D1EE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0007FF202FCE48EF0019D1EE /* Sources */ = {
+		00DF0F5E30040B5200B511BA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -276,15 +214,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0007FF1C2FCE48EF0019D1EE /* PBXTargetDependency */ = {
+		00DF0F6730040B5200B511BA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0007FF002FCE48EE0019D1EE /* NYTProject */;
-			targetProxy = 0007FF1B2FCE48EF0019D1EE /* PBXContainerItemProxy */;
-		};
-		0007FF262FCE48EF0019D1EE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0007FF002FCE48EE0019D1EE /* NYTProject */;
-			targetProxy = 0007FF252FCE48EF0019D1EE /* PBXContainerItemProxy */;
+			targetProxy = 00DF0F6630040B5200B511BA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -468,16 +401,15 @@
 			};
 			name = Release;
 		};
-		0007FF332FCE48F00019D1EE /* Debug */ = {
+		00DF0F6930040B5200B511BA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = zhelanova.NYTProjectTests;
+				PRODUCT_BUNDLE_IDENTIFIER = zhelanova.NYTTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -489,16 +421,15 @@
 			};
 			name = Debug;
 		};
-		0007FF342FCE48F00019D1EE /* Release */ = {
+		00DF0F6A30040B5200B511BA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = zhelanova.NYTProjectTests;
+				PRODUCT_BUNDLE_IDENTIFIER = zhelanova.NYTTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -507,44 +438,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NYTProject.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NYTProject";
-			};
-			name = Release;
-		};
-		0007FF362FCE48F00019D1EE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = zhelanova.NYTProjectUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = NYTProject;
-			};
-			name = Debug;
-		};
-		0007FF372FCE48F00019D1EE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = zhelanova.NYTProjectUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = NYTProject;
 			};
 			name = Release;
 		};
@@ -569,20 +462,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0007FF322FCE48F00019D1EE /* Build configuration list for PBXNativeTarget "NYTProjectTests" */ = {
+		00DF0F6830040B5200B511BA /* Build configuration list for PBXNativeTarget "NYTTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0007FF332FCE48F00019D1EE /* Debug */,
-				0007FF342FCE48F00019D1EE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		0007FF352FCE48F00019D1EE /* Build configuration list for PBXNativeTarget "NYTProjectUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0007FF362FCE48F00019D1EE /* Debug */,
-				0007FF372FCE48F00019D1EE /* Release */,
+				00DF0F6930040B5200B511BA /* Debug */,
+				00DF0F6A30040B5200B511BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
